@@ -16,10 +16,8 @@ DSFileName = "Escena1.udatasmith"
 # import XL_Pipeline as XL
 # from importlib import reload
 # reload(XL)
-# XL.Start()
-# XL.ImportDS()
-# XL.CreateLevels()
-# XL.AddGenerics()
+# XL.XL()
+
 
 def XL():
     
