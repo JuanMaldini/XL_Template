@@ -14,9 +14,12 @@ import_folder = "/Game/Datasmith/XL/"
 DSFileName = "Escena1.udatasmith"
 
 # import XL_Pipeline as XL
+# XL.XL()
+# Run Utility Blueprint 
+
+
 # from importlib import reload
 # reload(XL)
-# XL.XL()
 
 
 def XL():
@@ -122,64 +125,63 @@ def XL():
 
 
 
-def Generics():    ####################### Add Generics
+def Generics():
 
+
+    ####################### Add Generics
 
 
     # Obtén una referencia al mundo actual
     world = unreal.EditorLevelLibrary.get_editor_world()
-    
+
     # Define la clase de transmisión de nivel (Always Loaded)
     level_streaming_class = unreal.LevelStreamingAlwaysLoaded
 
     # Añade el nivel de transmisión al mundo
     level_streaming = unreal.EditorLevelUtils.add_level_to_world(world, map_to_add, level_streaming_class)
 
-    if level_streaming:
-        print(f"XL - Nivel añadido con éxito a: {level_path}")
-        
-        # Guardar el nivel actual
-        unreal.EditorLevelLibrary.save_current_level()   
-
-
-    ####################### Active Current Level
-
-
-    # Establece el nivel actual como el nivel activo
-    #unreal.EditorLevelLibrary.set_current_level(current_level)
-    
-    # Activa el nivel actual
-    #unreal.EditorLevelLibrary.set_level_active(current_level, True)
-
+    # Guardar el nivel actual
+    unreal.EditorLevelLibrary.save_current_level()
     
     
+    ####################### Select Camera
 
 
+    # Obtén el nivel actual
+    editor_level_lib = unreal.EditorLevelLibrary()
+    current_level = editor_level_lib.get_editor_world()
+    print(f"XL - Nivel actual: {current_level.get_name()}")
 
+    # Obtén todos los actores del nivel
+    actors = unreal.EditorLevelLibrary.get_all_level_actors()
+    print(f"XL - Total de actores en el nivel: {len(actors)}")
 
+    # Filtra solo los actores de tipo CineCameraActor
+    cine_actors = [actor for actor in actors if isinstance(actor, unreal.CineCameraActor)]
+    print(f"XL - Total de CineCameraActors en el nivel: {len(cine_actors)}")
 
+    # Encuentra la CineCameraActor con el mismo nombre que el nivel actual
+    for actor in cine_actors:
+        if actor.get_actor_label() == current_level.get_name():
+            selected_actor = actor
+            print(f"XL - CineCameraActor seleccionada: {selected_actor.get_actor_label()}")
 
+            # Selecciona la CineCameraActor en el editor
+            unreal.EditorLevelLibrary.set_selected_level_actors([selected_actor])
+            break
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-def savenew():
     
-    # Define el nombre del nivel sin extensión
-    level_name = DSFileName.split('.')[0]
     
-    # Guarda el nivel actual en la ubicación especificada
-    unreal.EditorAssetLibrary.save_asset(unreal.EditorLevelLibrary.get_editor_world(), level_path)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
 
 def ImportDS():                     # Import in new Level #Fix All Save
 
