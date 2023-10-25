@@ -1,24 +1,56 @@
 import os
 import unreal
+uext = ".udatasmith"
 
+ 
+ 
+ 
+ 
 # Ruta de la carpeta con los archivos de Datasmith
 datasmith_folder = "C:/Dropbox/Projects/XL/01 - Model/XL_Exported"
+# File to import
+DSFileName = "Scene_75" + uext
+
+#In case you need to select all
+def SelectAll():
+    # Obtén el editor de nivel actual
+    editor_util = unreal.EditorLevelLibrary()
+
+    # Obtén todos los actores en la escena
+    todos_los_actores = editor_util.get_all_level_actors()
+
+    # Selecciona todos los actores
+    unreal.EditorLevelLibrary.set_selected_level_actors(todos_los_actores)
+    print ("XL - Actors selected")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Carpeta donde se deben crear los niveles
 destination_folder = "/Game/Map/XL"
 # Mapa a agregar al mundo/level
 map_to_add = "/Game/Map/L_Generics"
 # Carpeta donde se importarán los archivos Datasmith
 import_folder = "/Game/Datasmith/XL/"
-
-# File to import
-DSFileName = "Scene_75.udatasmith"
-
-# import XL_Pipeline as XL
-# from importlib import reload
-# reload(XL)
-# XL.XL()
-# Run Utility Blueprint
-# XL.Generics()
 
 def XL():
     
@@ -166,21 +198,7 @@ def Generics():
             unreal.EditorLevelLibrary.set_selected_level_actors([selected_actor])
             break
 
-
-def SelectAll():
-    # Obtén el editor de nivel actual
-    editor_util = unreal.EditorLevelLibrary()
-
-    # Obtén todos los actores en la escena
-    todos_los_actores = editor_util.get_all_level_actors()
-
-    # Selecciona todos los actores
-    unreal.EditorLevelLibrary.set_selected_level_actors(todos_los_actores)
-    print ("XL - Actors selected")
-
-
 ####################### old func
-
 
 def ImportDS():                     # Import in new Level #Fix All Save
 
