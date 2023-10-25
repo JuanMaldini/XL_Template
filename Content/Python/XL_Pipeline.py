@@ -2,7 +2,7 @@ import os
 import unreal
 
 # Ruta de la carpeta con los archivos de Datasmith
-datasmith_folder = "C:/Dropbox/Projects/XL/01 - Model/LiveLinkTest_V03/XL_Exported/"
+datasmith_folder = "C:/Dropbox/Projects/XL/01 - Model/XL_Exported"
 # Carpeta donde se deben crear los niveles
 destination_folder = "/Game/Map/XL"
 # Mapa a agregar al mundo/level
@@ -11,7 +11,7 @@ map_to_add = "/Game/Map/L_Generics"
 import_folder = "/Game/Datasmith/XL/"
 
 # File to import
-DSFileName = "Escena1.udatasmith"
+DSFileName = "Scene_75.udatasmith"
 
 # import XL_Pipeline as XL
 # from importlib import reload
@@ -60,7 +60,7 @@ def XL():
     ####################### Importar
 
 
-    ds_file_on_disk = datasmith_folder + DSFileName
+    ds_file_on_disk = datasmith_folder + "/" + DSFileName
     ds_scene_in_memory = unreal.DatasmithSceneElement.construct_datasmith_scene_from_file(ds_file_on_disk)
 
     if ds_scene_in_memory is None:
@@ -166,6 +166,20 @@ def Generics():
             unreal.EditorLevelLibrary.set_selected_level_actors([selected_actor])
             break
 
+
+def SelectAll():
+    # Obtén el editor de nivel actual
+    editor_util = unreal.EditorLevelLibrary()
+
+    # Obtén todos los actores en la escena
+    todos_los_actores = editor_util.get_all_level_actors()
+
+    # Selecciona todos los actores
+    unreal.EditorLevelLibrary.set_selected_level_actors(todos_los_actores)
+    print ("XL - Actors selected")
+
+
+####################### old func
 
 
 def ImportDS():                     # Import in new Level #Fix All Save

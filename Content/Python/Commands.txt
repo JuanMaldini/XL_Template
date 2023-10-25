@@ -1,4 +1,18 @@
+#Setup code
+
+#Find your ds folder
+datasmith_folder = "C:/Folder/Folder/"
+
+# Remplace USENAME for ds file name to use
+DSFileName = "USENAME" + ".udatasmith"
+
+#Run
+
 import XL_Pipeline as XL
 from importlib import reload
 reload(XL)
 XL.XL()
+
+#Run Utility Blueprint
+
+XL.Generics()
