@@ -14,14 +14,11 @@ import_folder = "/Game/Datasmith/XL/"
 DSFileName = "Escena1.udatasmith"
 
 # import XL_Pipeline as XL
+# from importlib import reload
+# reload(XL)
 # XL.XL()
 # Run Utility Blueprint
 # XL.Generics()
-
-
-# from importlib import reload
-# reload(XL)
-
 
 def XL():
     
@@ -124,8 +121,6 @@ def XL():
     unreal.EditorLevelLibrary.set_selected_level_actors(todos_los_actores)
     print ("XL - Actors selected")
 
-
-
 def Generics():
 
 
@@ -171,17 +166,6 @@ def Generics():
             unreal.EditorLevelLibrary.set_selected_level_actors([selected_actor])
             break
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
 
 def ImportDS():                     # Import in new Level #Fix All Save
