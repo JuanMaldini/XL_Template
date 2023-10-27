@@ -1,4 +1,4 @@
-#Setup code
+#Setup
 
 datasmith_folder = "C:/Folder/Folder/"  #Find your ds folder
 
@@ -18,6 +18,14 @@ XL.SelectAll():                         #In case you need to select all
 #XL_Actions                             #Right click > Run Editor Utility Blueprint /Game/Blueprint/Dataprep/EUB/AAU_XL_Actor
 
 XL.Generics()                           #Add Levels streaming with light and postproduction
+                                        #Save it
+
 
 Render                                  #MetaShoot Render
                                         #Output {project_dir}/Saved/XL_Output
+
+https://www.dropbox.com/scl/fo/li1y6lf5x4sijj25fgvqx/h?rlkey=6jyhqoxdvp50h2tgdk50e41ag&dl=0
+
+https://dotnet.microsoft.com/es-es/download
+
+https://developer.microsoft.com/en-US/windows/downloads/windows-sdk/                 
