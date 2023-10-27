@@ -1,21 +1,24 @@
 #Setup code
 
 #Find your ds folder
-datasmith_folder = "C:/Folder/Folder"
+datasmith_folder = "C:/Folder/Folder/"
 
-# Remplace USENAME for ds file name to use
-DSFileName = "USENAME" + ".udatasmith"
+DSFileName = "USENAME" + uext           #Remplace USENAME for ds file name to use
 
-#Run
+import XL_Pipeline as XL                #import .py file to the Unreal project
+from importlib import reload            #import reload action, in case we need to reimport 
+reload(XL)                              #just reload action
+XL.XL()                                 #Create New Level for the datasmith file
+                                        #Save it
+                                        #Open that level
+                                        #Import Datasmith file to the level
+                                        #Select all actors
 
-import XL_Pipeline as XL
-from importlib import reload
-reload(XL)
-XL.XL()
 
-#In case you need to select all
-XL.SelectAll():
+XL.SelectAll():                         #In case you need to select all
 
-#Run Utility Blueprint
+#XL_Actions                             #Right click > Run Editor Utility Blueprint /Game/Blueprint/Dataprep/EUB/AAU_XL_Actor
 
-XL.Generics()
+XL.Generics()                           #Add Levels streaming with light and postproduction
+
+Render                                  #MetaShoot Render
