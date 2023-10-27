@@ -13,6 +13,9 @@ from importlib import reload
 reload(XL)
 XL.XL()
 
+#In case you need to select all
+XL.SelectAll():
+
 #Run Utility Blueprint
 
 XL.Generics()

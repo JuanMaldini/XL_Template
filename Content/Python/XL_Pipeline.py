@@ -11,6 +11,25 @@ datasmith_folder = "C:/Folder/Folder"
 # File to import
 DSFileName = "Scene_75" + uext
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #In case you need to select all
 def SelectAll():
     # Obtén el editor de nivel actual
@@ -22,28 +41,6 @@ def SelectAll():
     # Selecciona todos los actores
     unreal.EditorLevelLibrary.set_selected_level_actors(todos_los_actores)
     print ("XL - Actors selected")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # Carpeta donde se deben crear los niveles
 destination_folder = "/Game/Map/XL"
