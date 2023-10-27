@@ -6,10 +6,10 @@ uext = ".udatasmith"
  
  
  
-# Ruta de la carpeta con los archivos de Datasmith
-datasmith_folder = "C:/Folder/Folder"
-# File to import
-DSFileName = "Scene_75" + uext
+#Find your ds folder
+datasmith_folder = "C:/Dropbox/Projects/XL/01 - Model/2024004_WCC_BC_STAGING180823_V12/XL_Exported/"
+DSFileName = "EXISTING" + uext           #Remplace USENAME for ds file name to use
+
 
 
 

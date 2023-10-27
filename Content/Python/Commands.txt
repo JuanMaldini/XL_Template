@@ -1,7 +1,6 @@
 #Setup code
 
-#Find your ds folder
-datasmith_folder = "C:/Folder/Folder/"
+datasmith_folder = "C:/Folder/Folder/"  #Find your ds folder
 
 DSFileName = "USENAME" + uext           #Remplace USENAME for ds file name to use
 
@@ -13,7 +12,6 @@ XL.XL()                                 #Create New Level for the datasmith file
                                         #Open that level
                                         #Import Datasmith file to the level
                                         #Select all actors
-
 
 XL.SelectAll():                         #In case you need to select all
 
