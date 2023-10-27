@@ -195,6 +195,14 @@ def Generics():
             unreal.EditorLevelLibrary.set_selected_level_actors([selected_actor])
             break
 
+
+    ####################### Select Camera
+
+
+    # Guarda el nivel en la ruta especificada
+    unreal.EditorLevelLibrary.save_current_level()
+
+
 ####################### old func
 
 def ImportDS():                     # Import in new Level #Fix All Save

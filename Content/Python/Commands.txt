@@ -20,3 +20,4 @@ XL.SelectAll():                         #In case you need to select all
 XL.Generics()                           #Add Levels streaming with light and postproduction
 
 Render                                  #MetaShoot Render
+                                        #Output {project_dir}/Saved/XL_Output
