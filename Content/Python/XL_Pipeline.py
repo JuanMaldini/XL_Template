@@ -7,7 +7,7 @@ uext = ".udatasmith"
  
  
 # Ruta de la carpeta con los archivos de Datasmith
-datasmith_folder = "C:/Dropbox/Projects/XL/01 - Model/XL_Exported"
+datasmith_folder = "C:/Folder/Folder"
 # File to import
 DSFileName = "Scene_75" + uext
 
