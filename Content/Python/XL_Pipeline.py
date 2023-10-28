@@ -2,9 +2,45 @@ import os
 import unreal
 uext = ".udatasmith"
  
+
+
+
+
+
+
 #Find your ds folder
 datasmith_folder = "C:/Dropbox/Projects/XL/01 - Model/LiveLinkTest_V03/XL_Exported/"
-DSFileName = "Escena3" + uext           #Remplace USENAME for ds file name to use
+DSFileName = "Escena1" + uext           #Remplace USENAME for ds file name to use
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Carpeta donde se deben crear los niveles
