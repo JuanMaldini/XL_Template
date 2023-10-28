@@ -20,7 +20,6 @@ XL.SelectAll():                         #In case you need to select all
 XL.Generics()                           #Add Levels streaming with light and postproduction
                                         #Save it
 
-
 Render                                  #MetaShoot Render
                                         #Output {project_dir}/Saved/XL_Output
 
@@ -28,4 +27,10 @@ https://www.dropbox.com/scl/fo/li1y6lf5x4sijj25fgvqx/h?rlkey=6jyhqoxdvp50h2tgdk5
 
 https://dotnet.microsoft.com/es-es/download
 
-https://developer.microsoft.com/en-US/windows/downloads/windows-sdk/                 
+https://developer.microsoft.com/en-US/windows/downloads/windows-sdk/
+
+In case need to rebuild MetaShoot Plugin
+CMD >
+RunUAT.bat BuildPlugin 
+-plugin="C:\Users\juanm\XL Consulting AU pty Ltd\02 - FY24 PROJECTS - Documents\TEXT AND OBJ TEMPLATE\metashoot 5.2\metashoot 5.2\MetaShoot\MetaShoot.uplugin" 
+-package="C:\Users\juanm\Documents\GitHub\XL_Template\Plugins\Metashoot53"
