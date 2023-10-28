@@ -1,53 +1,16 @@
 import os
 import unreal
 uext = ".udatasmith"
-
- 
- 
- 
  
 #Find your ds folder
-datasmith_folder = "C:/Dropbox/Projects/XL/01 - Model/2024004_WCC_BC_STAGING180823_V12/XL_Exported/"
-DSFileName = "EXISTING" + uext           #Remplace USENAME for ds file name to use
+datasmith_folder = "C:/Dropbox/Projects/XL/01 - Model/LiveLinkTest_V03/XL_Exported/"
+DSFileName = "Escena3" + uext           #Remplace USENAME for ds file name to use
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#In case you need to select all
-def SelectAll():
-    # Obtén el editor de nivel actual
-    editor_util = unreal.EditorLevelLibrary()
-
-    # Obtén todos los actores en la escena
-    todos_los_actores = editor_util.get_all_level_actors()
-
-    # Selecciona todos los actores
-    unreal.EditorLevelLibrary.set_selected_level_actors(todos_los_actores)
-    print ("XL - Actors selected")
 
 # Carpeta donde se deben crear los niveles
 destination_folder = "/Game/Map/XL"
 # Mapa a agregar al mundo/level
 map_to_add = "/Game/Map/L_Generics"
-# Carpeta donde se importarán los archivos Datasmith
-import_folder = "/Game/Datasmith/XL/"
 
 def XL():
     
@@ -126,7 +89,7 @@ def XL():
     # Finalize the process by creating assets and actors.
 
     # Your destination folder must start with /Game/
-    result = ds_scene_in_memory.import_scene(import_folder)
+    result = ds_scene_in_memory.import_scene(destination_folder)
 
     if not result.import_succeed:
         print ("XL - Importing failed.")
@@ -201,6 +164,47 @@ def Generics():
 
     # Guarda el nivel en la ruta especificada
     unreal.EditorLevelLibrary.save_current_level()
+
+def SelectAll():
+    # Obtén el editor de nivel actual
+    editor_util = unreal.EditorLevelLibrary()
+
+    # Obtén todos los actores en la escena
+    todos_los_actores = editor_util.get_all_level_actors()
+
+    # Selecciona todos los actores
+    unreal.EditorLevelLibrary.set_selected_level_actors(todos_los_actores)
+    print ("XL - Actors selected")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ####################### old func

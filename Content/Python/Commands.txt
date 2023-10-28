@@ -4,6 +4,8 @@ datasmith_folder = "C:/Folder/Folder/"  #Find your ds folder
 
 DSFileName = "USENAME" + uext           #Remplace USENAME for ds file name to use
 
+################################################################################
+
 import XL_Pipeline as XL                #import .py file to the Unreal project
 from importlib import reload            #import reload action, in case we need to reimport 
 reload(XL)                              #just reload action
@@ -13,21 +15,34 @@ XL.XL()                                 #Create New Level for the datasmith file
                                         #Import Datasmith file to the level
                                         #Select all actors
 
-XL.SelectAll():                         #In case you need to select all
+################################################################################
+
+XL.SelectAll()                          #In case you need to select all
+XL.SelectCamByLevelName()               #In case you need to select the camera
+
+################################################################################
 
 #XL_Actions                             #Right click > Run Editor Utility Blueprint /Game/Blueprint/Dataprep/EUB/AAU_XL_Actor
+
+################################################################################
 
 XL.Generics()                           #Add Levels streaming with light and postproduction
                                         #Save it
 
+################################################################################
+
 Render                                  #MetaShoot Render
                                         #Output {project_dir}/Saved/XL_Output
+
+################################################################################
 
 https://www.dropbox.com/scl/fo/li1y6lf5x4sijj25fgvqx/h?rlkey=6jyhqoxdvp50h2tgdk50e41ag&dl=0
 
 https://dotnet.microsoft.com/es-es/download
 
 https://developer.microsoft.com/en-US/windows/downloads/windows-sdk/
+
+################################################################################
 
 In case need to rebuild MetaShoot Plugin
 CMD >
