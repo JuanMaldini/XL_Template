@@ -8,9 +8,13 @@ uext = ".udatasmith"
 
 
 
-#Find your ds folder
-datasmith_folder = "C:/Dropbox/Projects/XL/01 - Model/LiveLinkTest_V03/XL_Exported/"
-DSFileName = "Escena1" + uext           #Remplace USENAME for ds file name to use
+
+
+
+datasmith_folder = "C:/Dropbox/Projects/XL/01 - Model/LiveLinkTest_V03/XL_Exported/"    #Find your ds folder
+
+
+DSFileName = "Escena1" + uext                                                           #Remplace USENAME for ds file name to use
 
 
 
