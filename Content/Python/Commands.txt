@@ -42,6 +42,10 @@ https://dotnet.microsoft.com/es-es/download
 
 https://developer.microsoft.com/en-US/windows/downloads/windows-sdk/
 
+https://desktop.github.com/
+
+https://git-lfs.com/
+
 ################################################################################
 
 In case need to rebuild MetaShoot Plugin

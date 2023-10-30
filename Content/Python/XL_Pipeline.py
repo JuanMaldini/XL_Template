@@ -14,7 +14,7 @@ uext = ".udatasmith"
 datasmith_folder = "C:/Dropbox/Projects/XL/01 - Model/2024004_WCC_BC_STAGING180823_V12/XL_Exported/"    #Find your ds folder
 
 
-DSFileName = "Scene_75" + uext                                                           #Remplace USENAME for ds file name to use
+DSFileName = "Scene_75" + uext                                                                          #Remplace USENAME for ds file name to use
 
 
 
@@ -216,7 +216,8 @@ def SelectAll():
     unreal.EditorLevelLibrary.set_selected_level_actors(todos_los_actores)
     print ("XL - Actors selected")
 
-
+def SaveAllXL():
+    
 
 
 
