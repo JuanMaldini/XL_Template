@@ -13,7 +13,7 @@ destination_folder = "/Game/Map/XL"
 # Mapa a agregar al mundo/level
 map_to_add = "/Game/Map/L_Generics"
 
-def XL():
+def Start():
     
     ####################### New Level
 
@@ -144,10 +144,7 @@ def XL():
     # Ejecuta el evento personalizado
     blueprint_instance.RUN_XL_ACTIONS()
 
-
-
-
-
+#def SaveAll():                      # Save all
 
 def RunActions():
 
@@ -170,46 +167,42 @@ def RunActions():
 
 
     # Obtiene el objeto de contexto del mundo
-    world_context_object = unreal.EditorLevelLibrary.get_editor_world()
+    world = unreal.UnrealEditorSubsystem().get_editor_world()
 
-    # Obtiene la clase de tu Blueprint
-    blueprint_class = unreal.EditorAssetLibrary.load_blueprint_class("/Game/Blueprint/Dataprep/EUB/BP_XL_Actions")
+    # Primero, obtén tu Blueprint. En este caso, lo obtendremos a través de su ruta
+    bp_asset_path = "/Game/Blueprint/Dataprep/EUB/BP_XL_Actions"
+    bp_asset = unreal.EditorAssetLibrary.load_asset(bp_asset_path)
 
-    # Obtiene el primer actor de esa clase en el mundo
-    actor = unreal.GameplayStatics.get_actor_of_class(world_context_object, blueprint_class)
+    # Luego, obtén su clase generada como una ruta de cadena y cárgala
+    bp_class = unreal.load_object(None, bp_asset.generated_class().get_path_name())
 
-    if actor is None:
-        print("XL - Error: No se encontró ningún actor de la clase especificada.")
-    else:
-        print(f"XL - Actor {actor.get_name()} obtenido exitosamente.")
+    # Finalmente, obtén el objeto predeterminado, que es el objeto desde el cual podemos llamar a una función o modificar una propiedad
+    bp_cdo = unreal.get_default_object(bp_class)
 
-        # Ejecuta el evento personalizado
-        print("XL - Ejecutando el evento personalizado RUN_XL_ACTIONS...")
-        actor.run()  # Ejecuta el método run
-        actor.RUN_XL_ACTIONS()
-        print("XL - Evento personalizado RUN_XL_ACTIONS ejecutado exitosamente.")
+    # Para llamar a una función
+    # El primer argumento es el nombre de la función
+    # El segundo son los argumentos, que se pasan como una única tupla
+    # El tercero son los kwargs, que se pasan como un único diccionario
+    # Es posible que se necesite el mundo, también parece ser siempre el último de los argumentos
+    bp_cdo.call_method("XL_RUN", (world,), {})
 
+    # Para modificar una propiedad
+    # Usa set_editor_property
+    # bp_cdo.set_editor_property("PropName", value)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+def SelectAll():                    # Select all actor of level
     
+    # Obtén el editor de nivel actual
+    editor_util = unreal.EditorLevelLibrary()
 
-    
-    
-    ####################### Select Camera
+    # Obtén todos los actores en la escena
+    todos_los_actores = editor_util.get_all_level_actors()
 
+    # Selecciona todos los actores
+    unreal.EditorLevelLibrary.set_selected_level_actors(todos_los_actores)
+    print ("XL - Actors selected")
+
+def SelectCamByLevelName():         # Select cam = level
 
     # Obtén el nivel actual
     editor_level_lib = unreal.EditorLevelLibrary()
@@ -234,22 +227,25 @@ def RunActions():
             unreal.EditorLevelLibrary.set_selected_level_actors([selected_actor])
             break
 
-
-    ####################### Select Camera
-
-
-    # Guarda el nivel en la ruta especificada
-    unreal.EditorLevelLibrary.save_current_level()
-
-def SelectAll():
-    
-    # Obtén el editor de nivel actual
-    editor_util = unreal.EditorLevelLibrary()
+def SelectCamByDs():                # Select cam = datasmith
 
     # Obtén todos los actores en la escena
-    todos_los_actores = editor_util.get_all_level_actors()
+    todos_los_actores = unreal.EditorLevelLibrary.get_all_level_actors()
 
-    # Selecciona todos los actores
-    unreal.EditorLevelLibrary.set_selected_level_actors(todos_los_actores)
-    print ("XL - Actors selected")
+    # Busca el Datasmith Scene Actor
+    for actor in todos_los_actores:
+        if actor.get_class().get_name() == 'DatasmithSceneActor':
+            nombre_de_escena = actor.get_actor_label()
+            print("XL - Nombre de la escena: " + nombre_de_escena)
+            break
 
+    # Busca la cámara con el mismo nombre que el Datasmith Scene Actor
+    for actor in todos_los_actores:
+        if actor.get_class().get_name() == 'CineCameraActor':
+            nombre_camara = actor.get_actor_label()
+
+            if nombre_camara == nombre_de_escena:
+                # Selecciona la cámara
+                unreal.EditorLevelLibrary.set_selected_level_actors([actor])
+                print("XL - Cámara seleccionada: " + nombre_camara)
+                break
