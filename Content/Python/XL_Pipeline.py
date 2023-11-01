@@ -1,48 +1,10 @@
 import os
 import unreal
 uext = ".udatasmith"
- 
 
-
-
-
-
-
-
-
-
-datasmith_folder = "C:/Dropbox/Projects/XL/01 - Model/Template_XL_V09/XL_Exported/"    #Find your ds folder
-
+datasmith_folder = "C:/Dropbox/Projects/XL/01 - Model/LiveLinkTest_V03/XL_Exported/"    #Find your ds folder
 
 DSFileName = "Escena1" + uext                                                                          #Remplace USENAME for ds file name to use
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -139,23 +101,7 @@ def XL():
     ds_scene_in_memory.destroy_scene()
     print ("XL - Custom import process complete!")
 
-
-    ####################### Seleccionar
-
-
-    # Obtén el editor de nivel actual
-    editor_util = unreal.EditorLevelLibrary()
-
-    # Obtén todos los actores en la escena
-    todos_los_actores = editor_util.get_all_level_actors()
-
-    # Selecciona todos los actores
-    unreal.EditorLevelLibrary.set_selected_level_actors(todos_los_actores)
-    print ("XL - Actors selected")
-
-def Generics():
-
-
+    
     ####################### Add Generics
 
 
@@ -170,6 +116,69 @@ def Generics():
 
     # Guardar el nivel actual
     unreal.EditorLevelLibrary.save_current_level()
+
+
+    ####################### Seleccionar
+
+
+    # Obtén el editor de nivel actual
+    editor_util = unreal.EditorLevelLibrary()
+
+    # Obtén todos los actores en la escena
+    todos_los_actores = editor_util.get_all_level_actors()
+
+    # Selecciona todos los actores
+    unreal.EditorLevelLibrary.set_selected_level_actors(todos_los_actores)
+    print ("XL - Actors selected")
+
+
+def RunActions():
+
+
+    ####################### RunActions
+
+
+    # Ruta completa al Editor Utility Blueprint
+    AAU_XL_Actor = '/Game/Blueprint/Dataprep/EUB/AAU_XL_Actor'
+    if AAU_XL_Actor:
+        print("XL - " + editor_utility_class)
+
+
+    # Cargar el objeto del Asset del Editor Utility Blueprint
+    editor_utility_class = unreal.EditorUtilityActor(AAU_XL_Actor)
+    if editor_utility_class:
+        print("XL - " + editor_utility_class)
+
+
+        # Crear una instancia del Editor Utility Blueprint
+        editor_utility_instance = editor_utility_class()
+
+        if editor_utility_instance:
+            # Ejecutar el evento "Run" del Editor Utility Blueprint
+            editor_utility_instance.Run()
+        else:
+            print("XL - No se pudo crear una instancia del Editor Utility Blueprint.")
+    else:
+        print("XL - No se pudo cargar la clase del Editor Utility Blueprint.")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
     
     
     ####################### Select Camera
