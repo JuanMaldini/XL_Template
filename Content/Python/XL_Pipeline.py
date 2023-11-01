@@ -130,35 +130,64 @@ def XL():
     unreal.EditorLevelLibrary.set_selected_level_actors(todos_los_actores)
     print ("XL - Actors selected")
 
+
+    ####################### RunActions
+
+
+    # Carga el Blueprint
+    blueprint_path = "/Game/Blueprint/Dataprep/EUB/BP_XL_Actions.BP_XL_Actions"
+    blueprint_class = unreal.EditorAssetLibrary.load_blueprint_class(blueprint_path)
+
+    # Crea una instancia del Blueprint
+    blueprint_instance = blueprint_class()
+
+    # Ejecuta el evento personalizado
+    blueprint_instance.RUN_XL_ACTIONS()
+
+
+
+
+
+
 def RunActions():
+
+
+    ####################### Seleccionar
+
+
+    # Obtén el editor de nivel actual
+    editor_util = unreal.EditorLevelLibrary()
+
+    # Obtén todos los actores en la escena
+    todos_los_actores = editor_util.get_all_level_actors()
+
+    # Selecciona todos los actores
+    unreal.EditorLevelLibrary.set_selected_level_actors(todos_los_actores)
+    print ("XL - Actors selected")
 
 
     ####################### RunActions
 
 
-    # Ruta completa al Editor Utility Blueprint
-    AAU_XL_Actor = '/Game/Blueprint/Dataprep/EUB/AAU_XL_Actor'
-    if AAU_XL_Actor:
-        print("XL - " + editor_utility_class)
+    # Obtiene el objeto de contexto del mundo
+    world_context_object = unreal.EditorLevelLibrary.get_editor_world()
 
+    # Obtiene la clase de tu Blueprint
+    blueprint_class = unreal.EditorAssetLibrary.load_blueprint_class("/Game/Blueprint/Dataprep/EUB/BP_XL_Actions")
 
-    # Cargar el objeto del Asset del Editor Utility Blueprint
-    editor_utility_class = unreal.EditorUtilityActor(AAU_XL_Actor)
-    if editor_utility_class:
-        print("XL - " + editor_utility_class)
+    # Obtiene el primer actor de esa clase en el mundo
+    actor = unreal.GameplayStatics.get_actor_of_class(world_context_object, blueprint_class)
 
-
-        # Crear una instancia del Editor Utility Blueprint
-        editor_utility_instance = editor_utility_class()
-
-        if editor_utility_instance:
-            # Ejecutar el evento "Run" del Editor Utility Blueprint
-            editor_utility_instance.Run()
-        else:
-            print("XL - No se pudo crear una instancia del Editor Utility Blueprint.")
+    if actor is None:
+        print("XL - Error: No se encontró ningún actor de la clase especificada.")
     else:
-        print("XL - No se pudo cargar la clase del Editor Utility Blueprint.")
+        print(f"XL - Actor {actor.get_name()} obtenido exitosamente.")
 
+        # Ejecuta el evento personalizado
+        print("XL - Ejecutando el evento personalizado RUN_XL_ACTIONS...")
+        actor.run()  # Ejecuta el método run
+        actor.RUN_XL_ACTIONS()
+        print("XL - Evento personalizado RUN_XL_ACTIONS ejecutado exitosamente.")
 
 
 
