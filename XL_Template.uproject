@@ -5,21 +5,9 @@
 	"Description": "",
 	"Plugins": [
 		{
-			"Name": "Landmass",
-			"Enabled": true
-		},
-		{
 			"Name": "MetaShoot",
 			"Enabled": true,
 			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/7dc2c35fc61c468484c94bc41669e891"
-		},
-		{
-			"Name": "PCGGeometryScriptInterop",
-			"Enabled": true
-		},
-		{
-			"Name": "PCG",
-			"Enabled": true
 		},
 		{
 			"Name": "ScriptableToolsFramework",
@@ -34,31 +22,7 @@
 			"Enabled": true
 		},
 		{
-			"Name": "ZoneGraph",
-			"Enabled": true
-		},
-		{
-			"Name": "MassAI",
-			"Enabled": true
-		},
-		{
-			"Name": "MassCrowd",
-			"Enabled": true
-		},
-		{
-			"Name": "MassEntity",
-			"Enabled": true
-		},
-		{
-			"Name": "MassGameplay",
-			"Enabled": true
-		},
-		{
 			"Name": "SunPosition",
-			"Enabled": true
-		},
-		{
-			"Name": "HDRIBackdrop",
 			"Enabled": true
 		},
 		{
@@ -79,6 +43,18 @@
 		},
 		{
 			"Name": "DataprepGeometryOperations",
+			"Enabled": true
+		},
+		{
+			"Name": "PCGGeometryScriptInterop",
+			"Enabled": true
+		},
+		{
+			"Name": "PCGExternalDataInterop",
+			"Enabled": true
+		},
+		{
+			"Name": "PCG",
 			"Enabled": true
 		}
 	]

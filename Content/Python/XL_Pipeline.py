@@ -3,7 +3,7 @@ import unreal
 uext = ".udatasmith"
 
 #Find your ds folder
-datasmith_folder = "C:/Dropbox/Projects/XL/01 - Model/Template_XL_V09/XL_Exported/"
+datasmith_folder = "C:/Dropbox/Projects/XL/01 - Model/LiveLinkTest_V03/XL_Exported/"
 
 #Remplace USENAME for ds file name to use
 DSFileName = "Escena1" + uext                                                                          
@@ -117,7 +117,8 @@ def Start():
     unreal.EditorLevelLibrary.save_current_level()
 
 
-    ####################### Select all 
+    ####################### Seleccionar
+
 
     # Obtén el editor de nivel actual
     editor_util = unreal.EditorLevelLibrary()
