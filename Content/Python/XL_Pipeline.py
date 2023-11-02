@@ -3,7 +3,7 @@ import unreal
 uext = ".udatasmith"
 
 #Find your ds folder
-datasmith_folder = "C:/Dropbox/Projects/XL/01 - Model/LiveLinkTest_V03/XL_Exported/"
+datasmith_folder = "C:/Dropbox/Projects/XL/01 - Model/Template_XL_V09/XL_Exported/"
 
 #Remplace USENAME for ds file name to use
 DSFileName = "Escena1" + uext                                                                          
@@ -117,8 +117,7 @@ def Start():
     unreal.EditorLevelLibrary.save_current_level()
 
 
-    ####################### Seleccionar
-
+    ####################### Select all 
 
     # Obtén el editor de nivel actual
     editor_util = unreal.EditorLevelLibrary()
@@ -134,17 +133,42 @@ def Start():
     ####################### RunActions
 
 
-    # Carga el Blueprint
-    blueprint_path = "/Game/Blueprint/Dataprep/EUB/BP_XL_Actions.BP_XL_Actions"
-    blueprint_class = unreal.EditorAssetLibrary.load_blueprint_class(blueprint_path)
+    # Obtén una lista de todos los actores de la clase BP_XL_PIPELINE en el nivel
+    all_actors = unreal.EditorLevelLibrary.get_all_level_actors()
+    for actor in all_actors:
+        if actor.get_name() == 'BP_XL_Actions':
+            # Aquí tienes tu actor, puedes hacer lo que necesites con él
+            print("XL - " + actor)
 
-    # Crea una instancia del Blueprint
-    blueprint_instance = blueprint_class()
+    actor.call_method("XL_RUN")
 
-    # Ejecuta el evento personalizado
-    blueprint_instance.RUN_XL_ACTIONS()
 
-#def SaveAll():                     # Save all
+    ####################### Select cam
+
+
+    # Obtén el nivel actual
+    editor_level_lib = unreal.EditorLevelLibrary()
+    current_level = editor_level_lib.get_editor_world()
+    print(f"XL - Nivel actual: {current_level.get_name()}")
+
+    # Obtén todos los actores del nivel
+    actors = unreal.EditorLevelLibrary.get_all_level_actors()
+    print(f"XL - Total de actores en el nivel: {len(actors)}")
+
+    # Filtra solo los actores de tipo CineCameraActor
+    cine_actors = [actor for actor in actors if isinstance(actor, unreal.CineCameraActor)]
+    print(f"XL - Total de CineCameraActors en el nivel: {len(cine_actors)}")
+
+    # Encuentra la CineCameraActor con el mismo nombre que el nivel actual
+    for actor in cine_actors:
+        if actor.get_actor_label() == current_level.get_name():
+            selected_actor = actor
+            print(f"XL - CineCameraActor seleccionada: {selected_actor.get_actor_label()}")
+
+            # Selecciona la CineCameraActor en el editor
+            unreal.EditorLevelLibrary.set_selected_level_actors([selected_actor])
+            break
+
 
 def RunActions():                   # RunActions
 
@@ -166,29 +190,14 @@ def RunActions():                   # RunActions
     ####################### RunActions
 
 
-    # Obtiene el objeto de contexto del mundo
-    world = unreal.UnrealEditorSubsystem().get_editor_world()
+    # Obtén una lista de todos los actores de la clase BP_XL_PIPELINE en el nivel
+    all_actors = unreal.EditorLevelLibrary.get_all_level_actors()
+    for actor in all_actors:
+        if actor.get_name() == 'BP_XL_Actions':
+            # Aquí tienes tu actor, puedes hacer lo que necesites con él
+            print("XL - " + actor)
 
-    # Primero, obtén tu Blueprint. En este caso, lo obtendremos a través de su ruta
-    bp_asset_path = "/Game/Blueprint/Dataprep/EUB/BP_XL_Actions"
-    bp_asset = unreal.EditorAssetLibrary.load_asset(bp_asset_path)
-
-    # Luego, obtén su clase generada como una ruta de cadena y cárgala
-    bp_class = unreal.load_object(None, bp_asset.generated_class().get_path_name())
-
-    # Finalmente, obtén el objeto predeterminado, que es el objeto desde el cual podemos llamar a una función o modificar una propiedad
-    bp_cdo = unreal.get_default_object(bp_class)
-
-    # Para llamar a una función
-    # El primer argumento es el nombre de la función
-    # El segundo son los argumentos, que se pasan como una única tupla
-    # El tercero son los kwargs, que se pasan como un único diccionario
-    # Es posible que se necesite el mundo, también parece ser siempre el último de los argumentos
-    bp_cdo.call_method("XL_RUN", (world,), {})
-
-    # Para modificar una propiedad
-    # Usa set_editor_property
-    # bp_cdo.set_editor_property("PropName", value)
+    actor.call_method("XL_RUN")
 
 def SelectAll():                    # Select all actor of level
     
@@ -226,26 +235,3 @@ def SelectCamByLevelName():         # Select cam = level
             # Selecciona la CineCameraActor en el editor
             unreal.EditorLevelLibrary.set_selected_level_actors([selected_actor])
             break
-
-def SelectCamByDs():                # Select cam = datasmith
-
-    # Obtén todos los actores en la escena
-    todos_los_actores = unreal.EditorLevelLibrary.get_all_level_actors()
-
-    # Busca el Datasmith Scene Actor
-    for actor in todos_los_actores:
-        if actor.get_class().get_name() == 'DatasmithSceneActor':
-            nombre_de_escena = actor.get_actor_label()
-            print("XL - Nombre de la escena: " + nombre_de_escena)
-            break
-
-    # Busca la cámara con el mismo nombre que el Datasmith Scene Actor
-    for actor in todos_los_actores:
-        if actor.get_class().get_name() == 'CineCameraActor':
-            nombre_camara = actor.get_actor_label()
-
-            if nombre_camara == nombre_de_escena:
-                # Selecciona la cámara
-                unreal.EditorLevelLibrary.set_selected_level_actors([actor])
-                print("XL - Cámara seleccionada: " + nombre_camara)
-                break

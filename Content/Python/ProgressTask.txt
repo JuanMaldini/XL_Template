@@ -1,0 +1,5 @@
+Tasks
+    - Make render with python
+    - Run Actions with python
+    - Save all files
+    - Make task for every file
