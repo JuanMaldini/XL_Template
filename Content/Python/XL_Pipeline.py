@@ -15,7 +15,7 @@ map_to_add = "/Game/Map/L_Generics"
 
 def Start():
     
-    ####################### New Level
+    ############################################## New Level
 
 
     # Obtiene una referencia al mundo actual
@@ -36,21 +36,21 @@ def Start():
         new_level = unreal.EditorLevelLibrary.new_level(level_path)
 
 
-        ################### Save Level
+        ########################################## Save Level
 
 
         # Guarda el nivel en la ruta especificada
         unreal.EditorLevelLibrary.save_current_level()
 
 
-    ####################### Open Level
+    ############################################## Open Level
 
 
     # Abre el nuevo nivel
     unreal.EditorLevelLibrary.load_level(level_path)
 
 
-    ####################### Importar
+    ############################################## Importar
 
 
     ds_file_on_disk = datasmith_folder + "/" + DSFileName
@@ -101,7 +101,7 @@ def Start():
     print ("XL - Custom import process complete!")
 
     
-    ####################### Add Generics
+    ############################################## Add Generics
 
 
     # Obtén una referencia al mundo actual
@@ -117,7 +117,7 @@ def Start():
     unreal.EditorLevelLibrary.save_current_level()
 
 
-    ####################### Seleccionar
+    ############################################## Seleccionar
 
 
     # Obtén el editor de nivel actual
@@ -131,7 +131,7 @@ def Start():
     print ("XL - Actors selected")
 
 
-    ####################### RunActions
+    ############################################## RunActions
 
 
     # Obtén una lista de todos los actores de la clase BP_XL_PIPELINE en el nivel
@@ -144,7 +144,7 @@ def Start():
     actor.call_method("XL_RUN")
 
 
-    ####################### Select cam
+    ############################################## Select cam
 
 
     # Obtén el nivel actual
@@ -169,7 +169,6 @@ def Start():
             # Selecciona la CineCameraActor en el editor
             unreal.EditorLevelLibrary.set_selected_level_actors([selected_actor])
             break
-
 
 def RunActions():                   # RunActions
 
@@ -236,3 +235,12 @@ def SelectCamByLevelName():         # Select cam = level
             # Selecciona la CineCameraActor en el editor
             unreal.EditorLevelLibrary.set_selected_level_actors([selected_actor])
             break
+
+def MakeRenderMS():
+
+
+    ############################################## Make Render Metashoot
+
+
+        print("XL - Make Render with selected camera")
+
