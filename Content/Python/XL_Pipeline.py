@@ -3,10 +3,10 @@ import unreal
 uext = ".udatasmith"
 
 #Find your ds folder
-datasmith_folder = "C:/Dropbox/Projects/XL/01 - Model/LiveLinkTest_V03/XL_Exported/"
+datasmith_folder = "C:/Users/juanm/XL Consulting AU pty Ltd/02 - FY24 PROJECTS - Documents/2024050 - GPT Apex Stage 3 (Hindmarsh QLD)/03 - 3D & 4D/3D/XL_Exported/"
 
 #Remplace USENAME for ds file name to use
-DSFileName = "Escena1" + uext                                                                          
+DSFileName = "10-1" + uext                                                                          
 
 # Carpeta donde se deben crear los niveles
 destination_folder = "/Game/Map/XL"
@@ -177,14 +177,14 @@ def RunActions():                   # RunActions
 
 
     # Obtén el editor de nivel actual
-    editor_util = unreal.EditorLevelLibrary()
+    #editor_util = unreal.EditorLevelLibrary()
 
     # Obtén todos los actores en la escena
-    todos_los_actores = editor_util.get_all_level_actors()
+    #todos_los_actores = editor_util.get_all_level_actors()
 
     # Selecciona todos los actores
-    unreal.EditorLevelLibrary.set_selected_level_actors(todos_los_actores)
-    print ("XL - Actors selected")
+    #unreal.EditorLevelLibrary.set_selected_level_actors(todos_los_actores)
+    #print ("XL - Actors selected")
 
 
     ####################### RunActions
@@ -236,11 +236,60 @@ def SelectCamByLevelName():         # Select cam = level
             unreal.EditorLevelLibrary.set_selected_level_actors([selected_actor])
             break
 
-def MakeRenderMS():
+def AddGenerics():
 
 
-    ############################################## Make Render Metashoot
+    ############################################## Add Generics
 
 
-        print("XL - Make Render with selected camera")
+    # Obtén una referencia al mundo actual
+    world = unreal.EditorLevelLibrary.get_editor_world()
+
+    # Define la clase de transmisión de nivel (Always Loaded)
+    level_streaming_class = unreal.LevelStreamingAlwaysLoaded
+
+    # Añade el nivel de transmisión al mundo
+    level_streaming = unreal.EditorLevelUtils.add_level_to_world(world, map_to_add, level_streaming_class)
+
+    # Guardar el nivel actual
+    unreal.EditorLevelLibrary.save_current_level()
+    
+def MetaRenderPY():
+
+
+    ############################################## Add Generics
+
+
+    print("MetaRenderPY")
+
+    # Ruta al widget de Editor Utility Widget
+    widget_path = "/Game/Path/To/YourWidget.YourWidget"
+    #C:/Users/juanm/Documents/GitHub/XL_Template/Plugins/Metashoot53/Content/Assets/UI/MetaShoot.uasset
+    #/Script/Blutility.EditorUtilityWidgetBlueprint'/MetaShoot/Assets/UI/MetaShoot.MetaShoot'
+
+    # Carga el widget
+    widget = unreal.AssetToolsHelpers.get_asset_by_object_path(widget_path, unreal.WidgetBlueprint)
+    if widget:
+        # Crea una instancia del widget
+        widget_instance = unreal.EditorUtilityLibrary.spawn_and_register_tab(widget, unreal.EditorUtilityWidgetType.MAJOR)
+        
+        if widget_instance:
+            unreal.log("Widget cargado con éxito.")
+
+            # Encuentra el botón "RenderButton" dentro del widget
+            button_name = "RenderButton"
+            button = widget_instance.get_widget_from_name(button_name)
+
+            if button:
+                unreal.log(f"Botón '{button_name}' encontrado en el widget.")
+
+                # Activa el evento del botón (simula un clic)
+                button.trigger_event(unreal.UButton.get_on_clicked_event())
+                unreal.log(f"Evento 'OnClicked' del botón '{button_name}' activado.")
+            else:
+                unreal.log_warning(f"Botón '{button_name}' no encontrado en el widget.")
+        else:
+            unreal.log_error("No se pudo crear una instancia del widget.")
+    else:
+        unreal.log_error(f"No se pudo cargar el widget: {widget_path}")
 
