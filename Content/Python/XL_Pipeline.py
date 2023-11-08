@@ -177,14 +177,14 @@ def RunActions():                   # RunActions
 
 
     # Obtén el editor de nivel actual
-    #editor_util = unreal.EditorLevelLibrary()
+    editor_util = unreal.EditorLevelLibrary()
 
     # Obtén todos los actores en la escena
-    #todos_los_actores = editor_util.get_all_level_actors()
+    todos_los_actores = editor_util.get_all_level_actors()
 
     # Selecciona todos los actores
-    #unreal.EditorLevelLibrary.set_selected_level_actors(todos_los_actores)
-    #print ("XL - Actors selected")
+    unreal.EditorLevelLibrary.set_selected_level_actors(todos_los_actores)
+    print ("XL - Actors selected")
 
 
     ####################### RunActions
@@ -254,42 +254,41 @@ def AddGenerics():
     # Guardar el nivel actual
     unreal.EditorLevelLibrary.save_current_level()
     
-def MetaRenderPY():
+def MetaRender():
 
 
-    ############################################## Add Generics
+    # Asegúrate de que la ruta al EUW es correcta, incluyendo el nombre del asset al final
+    widget_blueprint_path = "/Game/XL_MetaShoot"
 
+    # Cargar el Editor Utility Widget Blueprint
+    asset_library = unreal.EditorAssetLibrary
+    widget_blueprint = asset_library.load_asset(widget_blueprint_path)
 
-    print("MetaRenderPY")
+    if widget_blueprint is None:
+        unreal.log_error("XL - No se pudo cargar el Editor Utility Widget desde: {}".format(widget_blueprint_path))
+        return
 
-    # Ruta al widget de Editor Utility Widget
-    widget_path = "/Game/Path/To/YourWidget.YourWidget"
-    #C:/Users/juanm/Documents/GitHub/XL_Template/Plugins/Metashoot53/Content/Assets/UI/MetaShoot.uasset
-    #/Script/Blutility.EditorUtilityWidgetBlueprint'/MetaShoot/Assets/UI/MetaShoot.MetaShoot'
+    # Obtener la clase del Editor Utility Widget Blueprint
+    widget_class = getattr(widget_blueprint, 'GeneratedClass', None)
 
-    # Carga el widget
-    widget = unreal.AssetToolsHelpers.get_asset_by_object_path(widget_path, unreal.WidgetBlueprint)
-    if widget:
-        # Crea una instancia del widget
-        widget_instance = unreal.EditorUtilityLibrary.spawn_and_register_tab(widget, unreal.EditorUtilityWidgetType.MAJOR)
+    if widget_class is None:
+        unreal.log_error("XL - No se pudo obtener la clase del Editor Utility Widget desde: {}".format(widget_blueprint_path))
+        return
+
+    # Obtén el Editor Utility Subsystem
+    editor_utility_subsystem = unreal.EditorUtilityLibrary.get_editor_utility_subsystem()
+
+    # Crear una instancia del Editor Utility Widget
+    try:
+        widget_instance = editor_utility_subsystem.spawn_and_register_tab(widget_class)
         
-        if widget_instance:
-            unreal.log("Widget cargado con éxito.")
-
-            # Encuentra el botón "RenderButton" dentro del widget
-            button_name = "RenderButton"
-            button = widget_instance.get_widget_from_name(button_name)
-
-            if button:
-                unreal.log(f"Botón '{button_name}' encontrado en el widget.")
-
-                # Activa el evento del botón (simula un clic)
-                button.trigger_event(unreal.UButton.get_on_clicked_event())
-                unreal.log(f"Evento 'OnClicked' del botón '{button_name}' activado.")
-            else:
-                unreal.log_warning(f"Botón '{button_name}' no encontrado en el widget.")
-        else:
-            unreal.log_error("No se pudo crear una instancia del widget.")
-    else:
-        unreal.log_error(f"No se pudo cargar el widget: {widget_path}")
-
+        # Verifica si la instancia del widget está abierta y si no, ábrela.
+        if not widget_instance.is_opened():
+            widget_instance.open_requested()
+        
+        # Ejecuta la función dentro del EUW
+        widget_instance.call_function('XLFunction')
+        
+        unreal.log("XL - La función 'XLFunction' fue llamada con éxito.")
+    except Exception as e:
+        unreal.log_error("XL - Hubo un error al crear la instancia del widget o al llamar a la función: {}".format(e))
