@@ -3,10 +3,10 @@ import unreal
 uext = ".udatasmith"
 
 #Find your ds folder
-datasmith_folder = "C:/Users/juanm/XL Consulting AU pty Ltd/02 - FY24 PROJECTS - Documents/2024050 - GPT Apex Stage 3 (Hindmarsh QLD)/03 - 3D & 4D/3D/XL_Exported/"
+datasmith_folder = "D:/XL Consulting AU pty Ltd/02 - FY24 PROJECTS - Documents/2024042 - Wongaburra Agecare (Woollam)/03 - 3D & 4D/3D/XL_Exported/"
 
 #Remplace USENAME for ds file name to use
-DSFileName = "10-1" + uext                                                                          
+DSFileName = "CONF_2_3" + uext                                                                          
 
 # Carpeta donde se deben crear los niveles
 destination_folder = "/Game/Map/XL"
@@ -292,3 +292,26 @@ def MetaRender():
         unreal.log("XL - La función 'XLFunction' fue llamada con éxito.")
     except Exception as e:
         unreal.log_error("XL - Hubo un error al crear la instancia del widget o al llamar a la función: {}".format(e))
+
+def MetaRendesr():
+    
+    widget_blueprint_path = "/Game/XL_MetaShoot.XL_MetaShoot_C"
+
+    
+    # Cargar la clase del Editor Utility Widget usando la ruta proporcionada.
+    widget_class = unreal.EditorAssetLibrary.load_blueprint_class(widget_blueprint_path)
+
+    # Verificar si la clase del widget se cargó correctamente.
+    if not widget_class or not issubclass(widget_class, unreal.EditorUtilityWidget):
+        unreal.log_error(f"XL - No se pudo cargar la clase del Editor Utility Widget desde: {widget_blueprint_path}")
+        return
+
+    # Crear una instancia del widget en el editor.
+    try:
+        # Abre la instancia del widget como una pestaña en el editor.
+        widget_instance = unreal.EditorUtilitySubsystem.spawn_and_register_tab(widget_class)()
+        
+        # En este punto, el widget se ha abierto con éxito.
+        unreal.log("XL - El widget ha sido abierto con éxito.")
+    except Exception as e:
+        unreal.log_error
