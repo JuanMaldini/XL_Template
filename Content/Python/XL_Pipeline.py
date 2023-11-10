@@ -6,7 +6,7 @@ uext = ".udatasmith"
 datasmith_folder = "D:/XL Consulting AU pty Ltd/02 - FY24 PROJECTS - Documents/2024038 - Banksmeadow Mult. Ind. Dev. (Hindmarsh)/03 - 3D & 4D/3D/XL_Exported/"
 
 #Remplace USENAME for ds file name to use
-DSFileName = "1-2" + uext                                                                          
+DSFileName = "1-0" + uext                                                                          
 
 # Carpeta donde se deben crear los niveles
 destination_folder = "/Game/Map/XL"
