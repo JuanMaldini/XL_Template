@@ -3,10 +3,10 @@ import unreal
 uext = ".udatasmith"
 
 #Find your ds folder
-datasmith_folder = "D:/XL Consulting AU pty Ltd/02 - FY24 PROJECTS - Documents/2024042 - Wongaburra Agecare (Woollam)/03 - 3D & 4D/3D/XL_Exported/"
+datasmith_folder = "D:/XL Consulting AU pty Ltd/02 - FY24 PROJECTS - Documents/2024038 - Banksmeadow Mult. Ind. Dev. (Hindmarsh)/03 - 3D & 4D/3D/XL_Exported/"
 
 #Remplace USENAME for ds file name to use
-DSFileName = "CONF_2_3" + uext                                                                          
+DSFileName = "1-2" + uext                                                                          
 
 # Carpeta donde se deben crear los niveles
 destination_folder = "/Game/Map/XL"
@@ -187,7 +187,7 @@ def RunActions():                   # RunActions
     print ("XL - Actors selected")
 
 
-    ####################### RunActions
+    ############################################## RunActions
 
 
     # Obtén una lista de todos los actores de la clase BP_XL_PIPELINE en el nivel
@@ -213,28 +213,33 @@ def SelectAll():                    # Select all actor of level
 
 def SelectCamByLevelName():         # Select cam = level
 
+
+    ############################################## Select cam by level name
+
+
     # Obtén el nivel actual
     editor_level_lib = unreal.EditorLevelLibrary()
     current_level = editor_level_lib.get_editor_world()
-    print(f"XL - Nivel actual: {current_level.get_name()}")
+    print(f"XL - Level: {current_level.get_name()}")
 
     # Obtén todos los actores del nivel
     actors = unreal.EditorLevelLibrary.get_all_level_actors()
-    print(f"XL - Total de actores en el nivel: {len(actors)}")
+    #print(f"XL - Total de actores en el nivel: {len(actors)}")
 
     # Filtra solo los actores de tipo CineCameraActor
     cine_actors = [actor for actor in actors if isinstance(actor, unreal.CineCameraActor)]
-    print(f"XL - Total de CineCameraActors en el nivel: {len(cine_actors)}")
+    #print(f"XL - Total de CineCameraActors en el nivel: {len(cine_actors)}")
 
     # Encuentra la CineCameraActor con el mismo nombre que el nivel actual
     for actor in cine_actors:
         if actor.get_actor_label() == current_level.get_name():
             selected_actor = actor
-            print(f"XL - CineCameraActor seleccionada: {selected_actor.get_actor_label()}")
+            print(f"XL - Camera: {selected_actor.get_actor_label()}")
 
             # Selecciona la CineCameraActor en el editor
             unreal.EditorLevelLibrary.set_selected_level_actors([selected_actor])
             break
+            
 
 def AddGenerics():
 
@@ -257,61 +262,84 @@ def AddGenerics():
 def MetaRender():
 
 
-    # Asegúrate de que la ruta al EUW es correcta, incluyendo el nombre del asset al final
-    widget_blueprint_path = "/Game/XL_MetaShoot"
+    ############################################## Select cam by level name
 
-    # Cargar el Editor Utility Widget Blueprint
-    asset_library = unreal.EditorAssetLibrary
-    widget_blueprint = asset_library.load_asset(widget_blueprint_path)
 
-    if widget_blueprint is None:
-        unreal.log_error("XL - No se pudo cargar el Editor Utility Widget desde: {}".format(widget_blueprint_path))
-        return
+    # Obtén el nivel actual
+    editor_level_lib = unreal.EditorLevelLibrary()
+    current_level = editor_level_lib.get_editor_world()
+    print(f"XL - Level: {current_level.get_name()}")
 
-    # Obtener la clase del Editor Utility Widget Blueprint
-    widget_class = getattr(widget_blueprint, 'GeneratedClass', None)
+    # Obtén todos los actores del nivel
+    actors = unreal.EditorLevelLibrary.get_all_level_actors()
+    #print(f"XL - Total de actores en el nivel: {len(actors)}")
 
-    if widget_class is None:
-        unreal.log_error("XL - No se pudo obtener la clase del Editor Utility Widget desde: {}".format(widget_blueprint_path))
-        return
+    # Filtra solo los actores de tipo CineCameraActor
+    cine_actors = [actor for actor in actors if isinstance(actor, unreal.CineCameraActor)]
+    #print(f"XL - Total de CineCameraActors en el nivel: {len(cine_actors)}")
 
-    # Obtén el Editor Utility Subsystem
-    editor_utility_subsystem = unreal.EditorUtilityLibrary.get_editor_utility_subsystem()
+    # Encuentra la CineCameraActor con el mismo nombre que el nivel actual
+    for actor in cine_actors:
+        if actor.get_actor_label() == current_level.get_name():
+            selected_actor = actor
+            print(f"XL - Camera: {selected_actor.get_actor_label()}")
 
-    # Crear una instancia del Editor Utility Widget
-    try:
-        widget_instance = editor_utility_subsystem.spawn_and_register_tab(widget_class)
-        
-        # Verifica si la instancia del widget está abierta y si no, ábrela.
-        if not widget_instance.is_opened():
-            widget_instance.open_requested()
-        
-        # Ejecuta la función dentro del EUW
-        widget_instance.call_function('XLFunction')
-        
-        unreal.log("XL - La función 'XLFunction' fue llamada con éxito.")
-    except Exception as e:
-        unreal.log_error("XL - Hubo un error al crear la instancia del widget o al llamar a la función: {}".format(e))
+            # Selecciona la CineCameraActor en el editor
+            unreal.EditorLevelLibrary.set_selected_level_actors([selected_actor])
+            break
 
-def MetaRendesr():
-    
-    widget_blueprint_path = "/Game/XL_MetaShoot.XL_MetaShoot_C"
 
-    
-    # Cargar la clase del Editor Utility Widget usando la ruta proporcionada.
-    widget_class = unreal.EditorAssetLibrary.load_blueprint_class(widget_blueprint_path)
+    ############################################## Meta Render
 
-    # Verificar si la clase del widget se cargó correctamente.
-    if not widget_class or not issubclass(widget_class, unreal.EditorUtilityWidget):
-        unreal.log_error(f"XL - No se pudo cargar la clase del Editor Utility Widget desde: {widget_blueprint_path}")
-        return
 
-    # Crear una instancia del widget en el editor.
-    try:
-        # Abre la instancia del widget como una pestaña en el editor.
-        widget_instance = unreal.EditorUtilitySubsystem.spawn_and_register_tab(widget_class)()
-        
-        # En este punto, el widget se ha abierto con éxito.
-        unreal.log("XL - El widget ha sido abierto con éxito.")
-    except Exception as e:
-        unreal.log_error
+    asset_path = "/Game/XL_MetaShoot"
+    asset = unreal.load_asset(asset_path)
+    unreal_systems.EditorUtilitySubsystem.spawn_and_register_tab_and_get_id(asset)
+
+
+
+
+
+
+
+
+
+
+    # Obtén la instancia del subsistema de assets del editor
+   # editor_asset_subsystem = unreal.get_editor_subsystem(unreal.EditorAssetSubsystem)
+
+    # La ruta al asset que deseas cargar
+   # asset_path = "/Game/XL_MetaShoot.XL_MetaShoot_C"
+
+    # Utiliza el subsistema para cargar el asset
+   # asset = editor_asset_subsystem.load_asset(asset_path)
+
+    # Verifica si el asset fue cargado correctamente
+ #   if asset is None:
+ #       print("No se pudo cargar el asset.")
+ #   else:
+ #       print(f"Asset {asset.get_name()} cargado exitosamente.")
+
+
+
+
+
+
+
+
+
+
+#def 122():
+    # La ruta al asset que deseas cargar
+    #asset_path = "/Game/XL_MetaShoot"
+
+    # Carga el asset utilizando la función load_asset
+    #asset = unreal.load_asset(asset_path)
+
+    # Verifica si el asset fue cargado correctamente
+    #if asset is None:
+   #     print("No se pudo cargar el asset.")
+   # else:
+   #     print("Asset cargado exitosamente.")
+
+

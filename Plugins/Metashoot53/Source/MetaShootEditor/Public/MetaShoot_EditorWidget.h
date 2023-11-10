@@ -57,6 +57,12 @@ class METASHOOTEDITOR_API UMetaShoot_EditorWidget : public UEditorUtilityWidget
 	UMetaShoot_EditorWidget();
 	~UMetaShoot_EditorWidget();
 
+	UFUNCTION(BlueprintImplementableEvent, Category = "My Custom Function")
+		void MyExposedFunction();
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Execute Sample function", Keywords = "MyScriptingLibrary sample test testing"), Category = "MyScriptingLibraryTesting")
+		static float MyScriptingLibrarySampleFunction(float Param);
+
 	UFUNCTION(BlueprintCallable, Category = "EditorWidget")
 		void checkLog();
 
