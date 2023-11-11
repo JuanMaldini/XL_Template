@@ -6,7 +6,7 @@ uext = ".udatasmith"
 datasmith_folder = "D:/XL Consulting AU pty Ltd/02 - FY24 PROJECTS - Documents/2024038 - Banksmeadow Mult. Ind. Dev. (Hindmarsh)/03 - 3D & 4D/3D/XL_Exported/"
 
 #Remplace USENAME for ds file name to use
-DSFileName = "1-0" + uext                                                                          
+DSFileName = "Scene 26" + uext                                                                          
 
 # Carpeta donde se deben crear los niveles
 destination_folder = "/Game/Map/XL"
@@ -14,7 +14,8 @@ destination_folder = "/Game/Map/XL"
 map_to_add = "/Game/Map/L_Generics"
 
 def Start():
-    
+
+
     ############################################## New Level
 
 
@@ -170,6 +171,7 @@ def Start():
             unreal.EditorLevelLibrary.set_selected_level_actors([selected_actor])
             break
 
+
 def RunActions():                   # RunActions
 
 
@@ -239,7 +241,6 @@ def SelectCamByLevelName():         # Select cam = level
             # Selecciona la CineCameraActor en el editor
             unreal.EditorLevelLibrary.set_selected_level_actors([selected_actor])
             break
-            
 
 def AddGenerics():
 
@@ -320,26 +321,5 @@ def MetaRender():
  #   else:
  #       print(f"Asset {asset.get_name()} cargado exitosamente.")
 
-
-
-
-
-
-
-
-
-
-#def 122():
-    # La ruta al asset que deseas cargar
-    #asset_path = "/Game/XL_MetaShoot"
-
-    # Carga el asset utilizando la función load_asset
-    #asset = unreal.load_asset(asset_path)
-
-    # Verifica si el asset fue cargado correctamente
-    #if asset is None:
-   #     print("No se pudo cargar el asset.")
-   # else:
-   #     print("Asset cargado exitosamente.")
 
 
