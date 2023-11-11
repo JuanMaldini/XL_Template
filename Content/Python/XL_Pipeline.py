@@ -3,8 +3,8 @@ import unreal
 uext = ".udatasmith"
 
 #Find your ds folder
-datasmith_folder = "C:/Users/JuanMaldini/OneDrive/Projects/XL/01 - Model/LiveLinkTest_V03/XL_Exported/"
-DSFileName = "001"
+datasmith_folder = "C:/Users/JuanMaldini/OneDrive/Projects/XL/01 - Model/Template_XL_V09/XL_Exported/"
+DSFileName = "Escena1"
 
 # Carpeta donde se deben crear los niveles
 destination_folder = "/Game/Map/XL"
