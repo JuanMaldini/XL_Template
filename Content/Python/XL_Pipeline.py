@@ -1,23 +1,29 @@
 import os
+import csv
 import unreal
-uext = ".udatasmith"
+
 
 #Find your ds folder
-datasmith_folder = "C:/Users/JuanMaldini/OneDrive/Projects/XL/01 - Model/Template_XL_V09/XL_Exported/"
-DSFileName = "Escena1"
+datasmith_folder = "D:/XL Consulting AU pty Ltd/02 - FY24 PROJECTS - Documents/2024041 - Heights Technical College (Hindmarsh)/03 - 3D & 4D/3D/XL_Exported"
+DSImport = "9-0"
+
 
 # Carpeta donde se deben crear los niveles
 destination_folder = "/Game/Map/XL"
 # Mapa a agregar al mundo/level
 map_to_add = "/Game/Map/L_Generics"
+#create extension ref
+uext = ".udatasmith"
+#Datasmith naming setup
+DSFileName = DSImport + uext
+
 
 def Start():
     # Iterar sobre cada archivo en la carpeta datasmith_folder
   #  for file in os.listdir(datasmith_folder):
        # if file.endswith(uext):
             # Extraer el nombre del archivo sin la extensión y asignarlo a DSFileName
-     #       DSFileName = file[:-len(uext)] + uext
-            print(DSFileName)
+            #DSFileName = file[:-len(uext)] + uext
 
             # Aquí puedes continuar con el resto de tu código que utiliza DSFileName
             # Por ejemplo, cargar el archivo en Unreal, etc.
@@ -48,20 +54,20 @@ def Start():
 
 
                 # Guarda el nivel en la ruta especificada
-                unreal.EditorLevelLibrary.save_current_level()
+               #unreal.EditorLevelLibrary.save_current_level()
 
 
             ############################################## Open Level
 
 
             # Abre el nuevo nivel
-            unreal.EditorLevelLibrary.load_level(level_path)
+            #unreal.EditorLevelLibrary.load_level(level_path)
 
 
             ############################################## Importar
 
 
-            ds_file_on_disk = datasmith_folder + DSFileName
+            ds_file_on_disk = datasmith_folder + "/" + DSFileName
             print(ds_file_on_disk)
             ds_scene_in_memory = unreal.DatasmithSceneElement.construct_datasmith_scene_from_file(ds_file_on_disk)
 
@@ -180,7 +186,7 @@ def Start():
                     break
 
 
-            ############################################## RunActions
+            ############################################## Call Meta Render
 
 
             # Obtén una lista de todos los actores de la clase BP_XL_PIPELINE en el nivel
@@ -194,12 +200,7 @@ def Start():
             print("XL - execute XL Call Meta Render")
 
 
-
             ############################################## WAIT
-
-
-
-
 
 
 def RunActions():                   # RunActions
@@ -328,8 +329,7 @@ def MetaRender():
             break
 
 
-
-    ############################################## RunActions
+    ############################################## Call Meta Render
 
 
     # Obtén una lista de todos los actores de la clase BP_XL_PIPELINE en el nivel
@@ -340,4 +340,14 @@ def MetaRender():
             print("XL - " + actor)
 
     actor.call_method("XL Call Meta Render")
+    print("XL - execute XL Call Meta Render")
+
+
+
+
+
+
+
+
+
 
