@@ -4,7 +4,7 @@ import unreal
 
 
 #Find your ds folder
-datasmith_folder = "D:/XL Consulting AU pty Ltd/02 - FY24 PROJECTS - Documents/2024041 - Heights Technical College (Hindmarsh)/03 - 3D & 4D/3D/XL_Exported"
+datasmith_folder = "C:/Users/juanm/OneDrive/Projects/XL/01 - Model/LiveLinkTest_V03/XL_Exported"
 DSImport = "9-0"
 
 
