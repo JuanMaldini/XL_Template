@@ -2,11 +2,9 @@ import os
 import csv
 import unreal
 
-
 #Find your ds folder
 datasmith_folder = "C:/Users/juanm/OneDrive/Projects/XL/01 - Model/LiveLinkTest_V03/XL_Exported"
-DSImport = "9-0"
-
+ds_import = "9-0"
 
 # Carpeta donde se deben crear los niveles
 destination_folder = "/Game/Map/XL"
@@ -15,7 +13,9 @@ map_to_add = "/Game/Map/L_Generics"
 #create extension ref
 uext = ".udatasmith"
 #Datasmith naming setup
-DSFileName = DSImport + uext
+DSFileName = ds_import + uext
+
+
 
 
 def Start():
@@ -61,7 +61,7 @@ def Start():
 
 
             # Abre el nuevo nivel
-            #unreal.EditorLevelLibrary.load_level(level_path)
+            unreal.EditorLevelLibrary.load_level(level_path)
 
 
             ############################################## Importar
@@ -341,6 +341,39 @@ def MetaRender():
 
     actor.call_method("XL Call Meta Render")
     print("XL - execute XL Call Meta Render")
+
+
+def CreateLevelAsDs(ds_import, destination_folder):
+    ############################################## New Level
+    # Obtiene una referencia al mundo actual
+    world = unreal.EditorLevelLibrary.get_editor_world()
+    # Obtiene el nombre del nivel a partir del nombre del archivo
+    level_name = DSFileName.split('.')[0]
+    print("XL - Level name: " + level_name)
+
+    level_path = destination_folder + "/" + level_name
+    print("XL - Level path:" + level_path)
+
+    # Verifica si el nivel ya existe
+    if unreal.EditorAssetLibrary.does_asset_exist(level_path):
+        print(f"XL - El nivel ya existe: {level_path}")
+    else:
+        # Crea un nuevo nivel vacío
+        new_level = unreal.EditorLevelLibrary.new_level(level_path)
+
+
+        ########################################## Save Level
+
+
+        # Guarda el nivel en la ruta especificada
+        #unreal.EditorLevelLibrary.save_current_level()
+
+
+    ############################################## Open Level
+
+
+    # Abre el nuevo nivel
+    unreal.EditorLevelLibrary.load_level(level_path)
 
 
 
