@@ -1,8 +1,8 @@
 import os
 import csv
 
-ds_folder = 'C:\Users\juanm\OneDrive\Projects\XL\01 - Model\LiveLinkTest_V03\XL_Exported'
-py_folder = 'C:\Users\juanm\Documents\GitHub\XL_Template\Content\Python'
+ds_folder = r'C:\Users\juanm\OneDrive\Projects\XL\01 - Model\LiveLinkTest_V03\XL_Exported'
+py_folder = r'C:\Users\juanm\Documents\GitHub\XL_Template\Content\Python'
 
 # Define la función para crear un archivo CSV con los nombres de archivos .udatasmith
 def generate_csv(ds_folder, py_folder):
