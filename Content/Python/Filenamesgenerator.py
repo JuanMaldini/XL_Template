@@ -1,7 +1,7 @@
 import os
 import csv
 
-ds_folder = r'C:\Users\juanm\OneDrive\Projects\XL\01 - Model\LiveLinkTest_V03\XL_Exported'
+ds_folder = r'C:\Users\juanm\XL Consulting AU pty Ltd\02 - FY24 PROJECTS - Documents\TEXT AND OBJ TEMPLATE\XL_Exported'
 py_folder = r'C:\Users\juanm\Documents\GitHub\XL_Template\Content\Python'
 
 # Define la función para crear un archivo CSV con los nombres de archivos .udatasmith
