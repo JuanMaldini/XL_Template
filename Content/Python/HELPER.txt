@@ -1,4 +1,0 @@
-XL_Exported
-C:\XL_Exported
-Python
-C:\XL_Template\Content\Python
