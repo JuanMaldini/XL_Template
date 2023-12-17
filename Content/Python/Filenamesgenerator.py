@@ -8,8 +8,8 @@ import csv
 
 
 
-ds_folder = r'C:\Users\juanm\XL Consulting AU pty Ltd\02 - FY24 PROJECTS - Documents\2024038 - Banksmeadow Mult. Ind. Dev. (Hindmarsh)\03 - 3D & 4D\3D\XL_Exported'
-py_folder = r'C:\Users\juanm\Documents\XL_Template\Content\Python'
+ds_folder = r'C:\Users\JuanMaldini\XL Consulting AU pty Ltd\02 - FY24 PROJECTS - Documents\TEXT AND OBJ TEMPLATE\XL_Exported'
+py_folder = r'C:\Users\JuanMaldini\Documents\GitHub\XL_Template\Content\Python'
 
 
 
