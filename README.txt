@@ -32,3 +32,6 @@ Now we have setup Filenamesgenerator.py file > Open with python > It will create
 
 Go to the folder downloaded > Open "XL_Template.uproject" (If fail, try again)
 
+
+
+
