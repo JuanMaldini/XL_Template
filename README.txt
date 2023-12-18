@@ -30,8 +30,28 @@ py_folder = r'C:\Users\USERNAME\Documents\GitHub\XL_Template\Content\Python'
 
 Now we have setup Filenamesgenerator.py file > Open with python > It will create automaticly the naming for Unreal 
 
-Go to the folder downloaded > Open "XL_Template.uproject" (If fail, try again)
+Go to the folder downloaded > Open "XL_Template.uproject" (If fail, try again, it will compile)
 
+#Now we are inside Unreal
 
+On bottom left > Content Browser > Content > Find "XL_Pipeline" > Right Click "Run Editor Utility Widget"
 
+Look for the window opened and fill the paths "C:\XL_Exported" & "C:\XL_Template\Content\Python" you should see the DatasmithFile to import > Select > "Import File" > Wait > "Run Actions" 
 
+#Procced to make render 
+
+"XL_Pipeline" > Select Cameras
+
+#Two ways to make render.
+
+1)Long way without plugin.
+
+	Content > Movie > Open "SEQ_00" > Right click under Camera Cut > "Actor To Sequencer" > "Add Currect Selection" > Right click in the timeline Camera Cut and select the camera you will render to assign for the view render.
+	Click in the 5th button Movie Render Queue
+	Window will appear > in settings add the preset > Unsaved Config > Select > XL_RenderPrest
+	Render Local
+
+2) Shot way > It will be with Metashoot plugin to automate to render of multiple cameras just clicking on them.
+	Pressing the button of "XL_Pipeline" > Select Cameras
+	Unreal Editor window > Tools > Editor Utility Widgets > Metashoot
+	With selected cameras press Render
